@@ -43,22 +43,22 @@ Clone the repository:
 git clone https://github.com/your-username/online-job-recruitment-system.git
 
 
-Move project files into your WAMP/XAMPP htdocs folder.
+Move project files into your WAMP/XAMPP (www/htdocs) folder.
 
 Import the database:
 
 Open phpMyAdmin.
 
-Create a new database (e.g., job_recruitment_db).
+Create a new database (e.g., users).
 
-Import the .sql file from the database/ folder.
+Import the users.sql file from the database/ folder.
 
 Update database credentials in config.php:
 
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "job_recruitment_db";
+$dbname = "users";
 
 
 Start Apache & MySQL on WAMP/XAMPP.
@@ -69,9 +69,9 @@ http://localhost/online-job-recruitment-system
 
 🔐 Login Details (Demo Accounts)
 
-Admin: admin@gmail.com / admin123
+Admin: admin / 123
 
-Employer: employer@gmail.com / employer123
+Employer: uoc / uoc
 
 
 📄 License
