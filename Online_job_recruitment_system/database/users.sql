@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Nov 03, 2023 at 05:41 PM
--- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- Host: 127.0.0.1
+-- Generation Time: Sep 09, 2025 at 06:45 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,17 +27,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `candidates`
 --
 
-CREATE TABLE IF NOT EXISTS `candidates` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `candidates` (
+  `id` int(11) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `NIC` varchar(20) NOT NULL,
   `jobrole` varchar(50) NOT NULL,
   `file_name` varchar(255) NOT NULL,
-  `file_data` longblob NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `file_data` longblob NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `candidates`
@@ -56,14 +55,14 @@ INSERT INTO `candidates` (`id`, `fullname`, `address`, `email`, `NIC`, `jobrole`
 -- Table structure for table `employers`
 --
 
-CREATE TABLE IF NOT EXISTS `employers` (
+CREATE TABLE `employers` (
   `NIC` varchar(100) NOT NULL,
   `fullname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `tel` int NOT NULL,
+  `tel` int(11) NOT NULL,
   `company` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `employers`
@@ -72,7 +71,8 @@ CREATE TABLE IF NOT EXISTS `employers` (
 INSERT INTO `employers` (`NIC`, `fullname`, `email`, `tel`, `company`, `password`) VALUES
 ('123459', 'Amal Perera', 'amal@gmail.com', 751324986, 'Queen lands', '1234'),
 ('19962345914', 'Suraj ', 'suraj@gmail.com', 112345678, 'Gamage indrustries', '1234'),
-('9756841235V', 'chami sachini was', 'chami@gmail.com', 779945621, 'URC', '222');
+('9756841235V', 'chami sachini was', 'chami@gmail.com', 779945621, 'URC', '222'),
+('999457812V', 'nimal gunarathne', 'nimal', 1564329876, 'gune', 'nimal');
 
 -- --------------------------------------------------------
 
@@ -80,13 +80,12 @@ INSERT INTO `employers` (`NIC`, `fullname`, `email`, `tel`, `company`, `password
 -- Table structure for table `login`
 --
 
-CREATE TABLE IF NOT EXISTS `login` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `user_type` varchar(50) NOT NULL DEFAULT 'user',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_type` varchar(50) NOT NULL DEFAULT 'user'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
@@ -97,7 +96,8 @@ INSERT INTO `login` (`id`, `username`, `password`, `user_type`) VALUES
 (7, 'admin', '123', 'admin'),
 (8, 'dinithi', '111', 'user'),
 (11, 'admin', '123', 'user'),
-(12, 'chami', '222', 'user');
+(12, 'chami', '222', 'user'),
+(13, 'nimal', 'nimal', 'user');
 
 -- --------------------------------------------------------
 
@@ -105,17 +105,16 @@ INSERT INTO `login` (`id`, `username`, `password`, `user_type`) VALUES
 -- Table structure for table `vacancies`
 --
 
-CREATE TABLE IF NOT EXISTS `vacancies` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vacancies` (
+  `id` int(11) NOT NULL,
   `job_title` varchar(100) NOT NULL,
   `company` varchar(100) NOT NULL,
   `description` varchar(1000) NOT NULL,
   `qualification` varchar(1000) NOT NULL,
   `salary` varchar(100) NOT NULL,
   `deadline` date NOT NULL,
-  `contact` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `contact` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `vacancies`
@@ -125,6 +124,50 @@ INSERT INTO `vacancies` (`id`, `job_title`, `company`, `description`, `qualifica
 (1, 'Senior Investor ', 'URC', 'We are looking for suitable candidate to perform in depth investment analysis, market research, deal structuring, evaluate proposed deal terms, risk assessments on investment opportunities. Liaise with legal counsel and other departments to complete with sound diligence processes and procedures.', 'Degree in Accounting or Finance or Business related area.\r\nExcellent administrative, organizational and business support skills, with the ability to multi-task.\r\nPossess excellent organizational, planning and co-ordination skills.\r\nVery good English.\r\nAround 18 months of relevant experience.', '90k', '2023-11-30', 113467532),
 (2, 'Accountant ', 'Copreros', 'We are looking for an experienced accountant to help our businesses to make critical financial decisions by collecting, tracking, and correcting the company\'s finances. You are responsible for financial audits, reconciling bank statements, and ensuring financial records are accurate throughout the year.', 'Undergraduate degree preferably in Business Administration with an emphasis in Finance/Accounting\r\nProfessional fluency in English, with excellent communication skills (reading, writing, speaking)\r\n4+ years of experience in the accounting and finance sector.\r\n\r\n', '60k', '2023-11-30', 112345966),
 (3, 'Land Agent', 'Queen Lands', 'We are looking for an individual who can work both in a team and as an individual to solve tasks and handle clients. They would be assisting clients Invest, Buy, Sell or Rent luxury residential real estate. Growing personal brand in order to attract own direct buyers or sellers. Handling property viewings, Property marketing, sales / rental negotiation, closing sales, communicating important information from buyer to seller or seller to buyer, coordinating and collaborating with local agent network in order to accomodate to inquiries and close deals.', 'Proven experience in real estate, including a track record of successful transactions.\r\nReal estate broker license.\r\nIn-depth knowledge of the local real estate market and industry trends.\r\nProficiency in real estate software and tools.', '50k', '2023-11-30', 112345674);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `candidates`
+--
+ALTER TABLE `candidates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vacancies`
+--
+ALTER TABLE `vacancies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `candidates`
+--
+ALTER TABLE `candidates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `vacancies`
+--
+ALTER TABLE `vacancies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
