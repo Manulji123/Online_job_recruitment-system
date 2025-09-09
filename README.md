@@ -40,7 +40,7 @@ Server: WAMP/XAMPP
 
 Clone the repository:
 
-git clone https://github.com/your-username/online-job-recruitment-system.git
+git clone https://github.com/your-username/online_job_recruitment_system.git
 
 
 Move project files into your WAMP/XAMPP (www/htdocs) folder.
@@ -65,7 +65,7 @@ Start Apache & MySQL on WAMP/XAMPP.
 
 Access the project in your browser:
 
-http://localhost/online-job-recruitment-system
+http://localhost/Online_job_recruitment_system
 
 🔐 Login Details (Demo Accounts)
 
